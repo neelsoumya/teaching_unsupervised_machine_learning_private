@@ -40,6 +40,8 @@ a=c(1,2,8,-3)
 cumsum(a)
 
 XX apply to image data
+https://www.rpubs.com/a_pear_9/pca_on_images
+
 XX apply to bulk sequencing data
 
 #################################
