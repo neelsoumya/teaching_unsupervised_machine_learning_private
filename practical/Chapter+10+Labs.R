@@ -54,10 +54,16 @@ set.seed(2)
 x=matrix(rnorm(50*2), ncol=2)
 x[1:25,1]=x[1:25,1]+3
 x[1:25,2]=x[1:25,2]-4
+
+plot(x)
+
+# nstart = multiple initial cluster assignments
 km.out=kmeans(x,centers=2,nstart=20)
 km.out$cluster
 
-plot(x)
+# READ the following
+#    https://medium.com/analytics-vidhya/comparison-of-initialization-strategies-for-k-means-d5ddd8b0350e
+# from all initialization strategies, choose the one that gives you minimum within cluster sum of squared
 
 plot(x, col=(km.out$cluster), main="K-Means Clustering Results with K=2", xlab="", ylab="", pch=20, cex=2)
 
