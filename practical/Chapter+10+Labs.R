@@ -1,6 +1,10 @@
 # Practicals
 # Chapter 10 Lab 1: Principal Components Analysis
 
+# Try demo below
+https://projector.tensorflow.org/
+  
+
 states=row.names(USArrests)
 states
 names(USArrests)
