@@ -90,7 +90,13 @@ plot(x, col=(km.out$cluster), main = "K-Means clustering results with K=2 and ns
 # Hierarchical Clustering
 ############################
 
+# The dist() function is used
+# to compute the 50 × 50 inter-observation Euclidean distance matrix
+
 dist(x)
+
+dist_x = dist(x)
+View(dist_x)
 
 hc.complete=hclust(dist(x), method="complete")
 hc.average=hclust(dist(x), method="average")
