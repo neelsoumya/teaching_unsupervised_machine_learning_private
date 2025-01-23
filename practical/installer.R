@@ -1,0 +1,2 @@
+# installation
+install.packages('ISLR')

@@ -1,5 +1,11 @@
+###################################################
 # Practicals
 # Chapter 10 Lab 1: Principal Components Analysis
+###################################################
+
+# load library
+#  install.packages('ISLR')
+library(ISLR)
 
 # Try demo below
 https://projector.tensorflow.org/
@@ -112,14 +118,25 @@ cutree(hc.average, 2)
 cutree(hc.single, 2)
 cutree(hc.single, 4)
 
+# scale and then do clustering
 xsc=scale(x)
 plot(hclust(dist(xsc), method="complete"), main="Hierarchical Clustering with Scaled Features")
-x=matrix(rnorm(30*3), ncol=3)
-dd=as.dist(1-cor(t(x)))
-plot(hclust(dd, method="complete"), main="Complete Linkage with Correlation-Based Distance", xlab="", sub="")
 
+###################################################
+# Exercise: do the other dissimilarity functions
+#    and compare
+###################################################
 
+# correlation based distance
+x_3d = matrix(rnorm(30*3), ncol=3)
+correlation_distance = as.dist(1-cor(t(x_3d)))
+plot(hclust(correlation_distance, method="complete"), main="Complete Linkage with Correlation-Based Distance", xlab="", sub="")
+
+# EXERCISE: try the other dissimilarity measures
+
+########################################
 # Chapter 10 Lab 3: NCI60 Data Example
+########################################
 
 # The NCI60 data
 
