@@ -49,10 +49,59 @@ plot(cumsum(pve), xlab="Principal Component", ylab="Cumulative Proportion of Var
 a=c(1,2,8,-3)
 cumsum(a)
 
-XX apply to image data
-https://www.rpubs.com/a_pear_9/pca_on_images
+# TODO: apply to image data
+#   https://www.rpubs.com/a_pear_9/pca_on_images
 
-XX apply to bulk sequencing data
+# TODO: apply to bulk sequencing data
+library(raster)
+# Import the picture as a raster
+pepper <- stack("Pepper.PNG")[[1:3]]
+# Plot it
+plotRGB(pepper)
+
+plot(
+  pepper[[3]], 
+  col = rev(blues9), 
+  asp = 1, 
+  axes = FALSE,
+  legend = FALSE
+)
+
+
+# To perform PCA, we can’t leave it in image format. We want to create a data.frame with each pixel in a single row and each colour band as a column.
+
+
+# Extract all pixels as data frame
+pepper.df <- as.data.frame(pepper)
+# Have a quick look
+head(pepper.df)
+
+# Compute the principle components
+# Remember to scale the variables
+pca <- prcomp(pepper.df, scale. = TRUE)
+# Save the principle components
+pepper.pc <- pca$x
+pepper$pc1 <- pepper.pc[,1]
+pepper$pc2 <- pepper.pc[,2]
+pepper$pc3 <- pepper.pc[,3]
+
+# The interesting thing about these principle components
+# is that each pixel in the image has a value of each 
+# of the principle components, so we can plot an image 
+# of the principle components. 
+plot(pepper$pc1, col = cm.colors(15), axes = FALSE)
+
+plot(pepper$pc2, col = cm.colors(15), axes = FALSE)
+
+plot(pepper$pc3, col = cm.colors(15), axes = FALSE)
+
+# The first principle component image is basically
+# the original image. 
+# But the other two are very interesting. 
+# The second principle component picks out my hand 
+# – a distinct part of the image that isn’t white-grey-black.
+# The third principle component picks out Pepper’s collar, 
+# which is another distinct part of the image.
 
 #################################
 # Chapter 10 Lab 2: Clustering
